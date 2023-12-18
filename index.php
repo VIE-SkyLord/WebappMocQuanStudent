@@ -24,13 +24,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--BOOTSTRAP5 CSS-->
+    <!--BOOTSTRAP5-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!--ICONS-->
     <script src="https://kit.fontawesome.com/f443c421d0.js" crossorigin="anonymous"></script>
 
-    <!--BOOTSTRAP5 JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
 </head>
@@ -93,7 +92,8 @@
         <p>Đây là nội dung</p>
         <!-- Carousel -->
         <div id="demo" class="carousel slide container" data-bs-ride="carousel">
-
+        <!---header-->
+        <center><h1 style="background-color:green; font-color: ">Xu hướng</h1></center>
             <!-- Indicators/dots -->
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
@@ -107,21 +107,21 @@
                     <img src="../image/food/banhgaotoboki.jpg" alt="Bánh gạo toboki" class="d-block w-100">
                     <div class="carousel-caption">
                         <h3 style="background-color:black">Bánh gạo toboki</h3>
-                        <p class="btn btn-info">30.000 VND/ 1 Đĩa     <a href="" class="btn btn-danger">Chi tiết</a></p>
+                        <p class="btn btn-info">30.000 VND/ 1 Đĩa     <a href="" class="btn btn-danger">Thêm vào giỏ hàng</a><a href="" class="btn btn-danger">Thêm vào bàn ăn</a></p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="../image/food/xucxichxienran.jpg" alt="Xúc xích xiên rán" class="d-block w-100">
                     <div class="carousel-caption">
                         <h3 style="background-color:black">Xúc xích xiên rán</h3>
-                        <p class="btn btn-info">35.000 VND/ 1 Đĩa 5 cái     <a href="" class="btn btn-danger">Chi tiết</a></p>
+                        <p class="btn btn-info">35.000 VND/ 1 Đĩa 5 cái     <a href="" class="btn btn-danger">Thêm vào giỏ hàng</a><a href="" class="btn btn-danger">Thêm vào bàn ăn</a></p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="../image/food/shusichien.jpg" alt="Shusi chiên xù" class="d-block w-100">
                     <div class="carousel-caption">
                         <h3 style="background-color:black">Shusi chiên xù</h3>
-                        <p class="btn btn-info">50.000 VND/ 1 Đĩa 10 cái     <a href="" class="btn btn-danger">Chi tiết</a></p>
+                        <p class="btn btn-info">50.000 VND/ 1 Đĩa 10 cái     <a href="" class="btn btn-danger">Thêm vào giỏ hàng</a><a href="" class="btn btn-danger">Thêm vào bàn ăn</a></p>
                     </div>
                 </div>
             </div>

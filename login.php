@@ -29,7 +29,15 @@ function verifyPassword($password, $hashed_password) {
             $_SESSION['email'] = $row['email'];
             $_SESSION['phonenumber'] = $row['so_dien_thoai'];
             $_SESSION['permission'] = $row['id_quyen_han'];
-            header("location: index.php");
+            
+            //kiểm tra quyền hạn
+            $permision =  $_SESSION['permission'];
+            if($permision == 1){
+                header("location: admin.php");
+            }
+            if($permision == 2){
+                header("location: index.php");
+            }
         }
         else {
             echo "Đăng nhập thất bại";

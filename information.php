@@ -46,8 +46,19 @@
         if ($rowsAffected > 0) {
             // Session đã được cập nhật bởi câu truy vấn UPDATE, không cần fetch dữ liệu
             echo "Cập nhật thông tin tài khoản thành công";
+
+            $sql = "SELECT * FROM taikhoan WHERE ten_dang_nhap = :username";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':username', $username);
+            $query = $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $_SESSION['username'] = $row['ten_dang_nhap'];
+            $_SESSION['displayname'] = $row['ten_hien_thi'];
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['phonenumber'] = $row['so_dien_thoai'];
         } else {
-            echo "Cập nhật thông tin tài khoản thất bại";
+            echo '<p class="text-danger">Cập nhật thông tin tài khoản thất bại do thông tin không thay đổi hoặc thông tin bị sai</p>';
         }
     }
 ?>
@@ -122,7 +133,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2" style="text-align: center"><a href="changepassword.php">Đổi mật khẩu</a>
+                        <td colspan="2" style="text-align: center"><a href="getverificationcode.php">Đổi mật khẩu</a>
                     </tr>
                 </table>
             </form>

@@ -3,8 +3,9 @@
     if($conn) echo "Kết nối thành công";
     else echo "Kết nối thất bại";
 
-    $sql = "SELECT `monan`.`ten_mon_an`, `monan`.`hinh_anh`, `monan`.`gia_ca`, `donvitinh`.`ten_don_vi_tinh` FROM `monan` 
+    $sql = "SELECT `monan`.`ten_mon_an`, `monan`.`hinh_anh`, `monan`.`gia_ca`, `donvitinh`.`ten_don_vi_tinh`, `tinhtrangmon`.`ten_tinh_trang_mon_an` FROM `monan` 
             INNER JOIN `donvitinh` ON `monan`.id_don_vi_tinh = donvitinh.id_don_vi_tinh
+            INNER JOIN `tinhtrangmon` ON `monan`.`id_tinh_trang` = `tinhtrangmon`.`id_tinh_trang_mon_an`
             WHERE `monan`.`id_loai_mon_an` = '1'
             ORDER BY `monan`.`gia_ca` ASC;";
         $stmt = $conn->prepare($sql);
@@ -15,8 +16,9 @@
             $result[] = $row;
         }
 
-    $sql1 = "SELECT `monan`.`ten_mon_an`, `monan`.`hinh_anh`, `monan`.`gia_ca`, `donvitinh`.`ten_don_vi_tinh` FROM `monan` 
+    $sql1 = "SELECT `monan`.`ten_mon_an`, `monan`.`hinh_anh`, `monan`.`gia_ca`, `donvitinh`.`ten_don_vi_tinh`, `tinhtrangmon`.`ten_tinh_trang_mon_an` FROM `monan` 
             INNER JOIN `donvitinh` ON `monan`.id_don_vi_tinh = donvitinh.id_don_vi_tinh
+            INNER JOIN `tinhtrangmon` ON `monan`.`id_tinh_trang` = `tinhtrangmon`.`id_tinh_trang_mon_an`
             WHERE `monan`.`id_loai_mon_an` = '2'
             ORDER BY `monan`.`gia_ca` ASC;";
         $stmt1 = $conn->prepare($sql1);
@@ -27,8 +29,9 @@
             $result1[] = $row;
         }
 
-    $sql2 = "SELECT `monan`.`ten_mon_an`, `monan`.`hinh_anh`, `monan`.`gia_ca`, `donvitinh`.`ten_don_vi_tinh` FROM `monan` 
+    $sql2 = "SELECT `monan`.`ten_mon_an`, `monan`.`hinh_anh`, `monan`.`gia_ca`, `donvitinh`.`ten_don_vi_tinh`, `tinhtrangmon`.`ten_tinh_trang_mon_an` FROM `monan` 
             INNER JOIN `donvitinh` ON `monan`.id_don_vi_tinh = donvitinh.id_don_vi_tinh
+            INNER JOIN `tinhtrangmon` ON `monan`.`id_tinh_trang` = `tinhtrangmon`.`id_tinh_trang_mon_an`
             WHERE `monan`.`id_loai_mon_an` = '3'
             ORDER BY `monan`.`gia_ca` ASC;";
         $stmt2 = $conn->prepare($sql2);
@@ -59,14 +62,15 @@
     <div class="row">
     <h1>Cà phê</h1>
     <?php foreach($result as $item): ?>
-        <div class="card col-sm-3">
+        <div class="card col-sm-4">
           <img class="card-img-top" src="data:image/jpeg;base64,<?php echo base64_encode( $item['hinh_anh'] )?>" style="width:100%; height:auto" alt="Card image">
           <div class="card-body">
              <h4 class="card-title"><?php echo $item['ten_mon_an'] ?></h4>
              <p class="card-text"><?php echo $item['gia_ca'].'VND /'.$item['ten_don_vi_tinh'] ?></p>
-             <input type="number" id="myNumber" value="0" min="0" max="<?php echo $item['soluong'] ?>" style="width: 60px">
-             <a href="#" class="btn btn-primary">Đặt món</a>
-             <a href="#" class="btn btn-primary">Chi tiết</a>
+             <p class="card-text text-dark"><?php echo $item['ten_tinh_trang_mon_an'] ?></p>
+             <input type="number" id="myNumber" value="0" min="0" max="100" style="width: 60px">
+             <a href="#" class="btn btn-primary">Thêm vào giỏ hàng</a>
+             <a href="#" class="btn btn-primary">Thêm vào bàn ăn</a>
           </div>
         </div>
     <?php endforeach ?>
@@ -76,14 +80,15 @@
     <div class="row">
     <h1>Đồ ăn nhanh</h1>
     <?php foreach($result1 as $item): ?>
-        <div class="card col-sm-3">
+        <div class="card col-sm-4">
           <img class="card-img-top" src="data:image/jpeg;base64,<?php echo base64_encode( $item['hinh_anh'] )?>" style="width:100%; height:auto" alt="Card image">
           <div class="card-body">
              <h4 class="card-title"><?php echo $item['ten_mon_an'] ?></h4>
              <p class="card-text"><?php echo $item['gia_ca'].'VND /'.$item['ten_don_vi_tinh'] ?></p>
-             <!--<input type="number" id="myNumber" value="0" min="0" max="<?php echo $item['soluong'] ?>" style="width: 60px">-->
+             <p class="card-text text-dark"><?php echo $item['ten_tinh_trang_mon_an'] ?></p>
+             <input type="number" id="myNumber" value="0" min="0" max="100" style="width: 60px">
              <a href="#" class="btn btn-primary">Thêm vào giỏ hàng</a>
-             <a href="#" class="btn btn-primary">Đặt món</a>
+             <a href="#" class="btn btn-primary">Thêm vào bàn ăn</a>
           </div>
         </div>
     <?php endforeach ?>
@@ -92,14 +97,15 @@
     <div class="row">
     <h1>Pizza</h1>
     <?php foreach($result2 as $item): ?>
-        <div class="card col-sm-3">
+        <div class="card col-sm-4">
           <img class="card-img-top" src="data:image/jpeg;base64,<?php echo base64_encode( $item['hinh_anh'] )?>" style="width:100%; height:auto" alt="Card image">
           <div class="card-body">
              <h4 class="card-title"><?php echo $item['ten_mon_an'] ?></h4>
              <p class="card-text"><?php echo $item['gia_ca'].' /'.$item['donvi'] ?></p>
-             <input type="number" id="myNumber" value="0" min="0" max="<?php echo $item['soluong'] ?>" style="width: 60px">
-             <a href="#" class="btn btn-primary">Đặt món</a>
-             <a href="#" class="btn btn-primary">Chi tiết</a>
+             <p class="card-text text-dark"><?php echo $item['ten_tinh_trang_mon_an'] ?></p>
+             <input type="number" id="myNumber" value="0" min="0" max="100" style="width: 60px">
+             <a href="#" class="btn btn-primary">Thêm vào giỏ hàng</a>
+             <a href="#" class="btn btn-primary">Thêm vào bàn ăn</a>
           </div>
         </div>
     <?php endforeach ?>
