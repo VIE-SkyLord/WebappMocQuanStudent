@@ -47,7 +47,7 @@
             // Session đã được cập nhật bởi câu truy vấn UPDATE, không cần fetch dữ liệu
             echo "Cập nhật thông tin tài khoản thành công";
         } else {
-            echo "Đăng nhập thất bại";
+            echo "Cập nhật thông tin tài khoản thất bại";
         }
     }
 ?>
