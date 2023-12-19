@@ -11,6 +11,7 @@
         $username = $_SESSION['username'];
         $email = $_SESSION['email'];
         $phonenumber = $_SESSION['phonenumber'];
+        $permission = $_SESSION['permission'];
     }
 ?>
 
@@ -128,7 +129,23 @@
                     <tr>
                         <td></td>
                         <td class="float-end">
-                            <a href="index.php"><input type="button" class="btn btn-primary" style="width:200px" name="returnindex" value="Về trang chủ"></a>
+                            <?php 
+                            //Hàm kiểm tra phân quyền để về trang chủ
+                            function directpage($permission) 
+                            {
+                                if($permission==1)
+                                {
+                                    return "admin.php";
+                                }
+                                else if($permissionn==2)
+                                {
+                                    return "index.php";
+                                }else{
+                                    return;
+                                }
+                            }
+                            ?>
+                            <a href=<?php echo directpage($permission); ?>><input type="button" class="btn btn-primary" style="width:200px" name="returnindex" value="Về trang chủ"></a>
                             <input type="submit" class="btn btn-primary" style="width:200px" name="changeinformation" value="Thay đổi thông tin">
                         </td>
                     </tr>

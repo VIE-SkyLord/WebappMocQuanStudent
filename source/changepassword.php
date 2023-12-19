@@ -32,6 +32,7 @@ if (isset($_POST['changepassword'])) {
     $oldpassword = $_POST['oldpassword'];
     $newpassword = $_POST['newpassword'];
     $confirmpassword = $_POST['confirmpassword'];
+    $permission = $_SESSION['permission'];
 
     // Kiểm tra mật khẩu cũ có đúng không
     $sql = "SELECT mat_khau FROM taikhoan WHERE id_tai_khoan = :id";

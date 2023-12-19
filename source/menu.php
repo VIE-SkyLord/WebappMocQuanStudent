@@ -107,7 +107,7 @@
           <div class="card-body">
              <h4 class="card-title"><?php echo $item['ten_mon_an'] ?></h4>
              <p class="card-text"><?php echo 'Kích cỡ: '.$item['ten_kich_co'] ?></p>
-             <p class="card-text"><?php echo $item['gia_ca'].' /'.$item['ten_don_vi_tinh'] ?></p>
+             <p class="card-text"><?php echo $item['gia_ca'].'VND /'.$item['ten_don_vi_tinh'] ?></p>
              <p class="card-text text-dark"><?php echo $item['ten_tinh_trang_mon_an'] ?></p>
              <input type="number" id="myNumber" value="0" min="0" max="100" style="width: 60px">
              <a href="#" class="btn btn-primary">Thêm vào giỏ hàng</a>
