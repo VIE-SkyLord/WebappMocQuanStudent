@@ -29,7 +29,8 @@ function verifyPassword($password, $hashed_password) {
             $_SESSION['email'] = $row['email'];
             $_SESSION['phonenumber'] = $row['so_dien_thoai'];
             $_SESSION['permission'] = $row['id_quyen_han'];
-            
+            $_SESSION['password'] = $row['mat_khau'];
+
             //kiểm tra quyền hạn
             $permision =  $_SESSION['permission'];
             if($permision == 1){

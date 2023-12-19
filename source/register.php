@@ -73,6 +73,8 @@ if (isset($_POST['register'])) {
             $_SESSION['email'] = $row['email'];
             $_SESSION['phonenumber'] = $row['so_dien_thoai'];
             $_SESSION['permission'] = $row['id_quyen_han'];
+            $_SESSION['password'] = $row['mat_khau'];
+
             header("location: index.php");
         }
     }

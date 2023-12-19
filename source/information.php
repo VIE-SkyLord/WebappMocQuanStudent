@@ -133,7 +133,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2" style="text-align: center"><a href="getverificationcode.php">Đổi mật khẩu</a>
+                        <td colspan="2" style="text-align: center"><a href="changepassword.php">Đổi mật khẩu</a>
                     </tr>
                 </table>
             </form>

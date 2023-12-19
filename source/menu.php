@@ -3,46 +3,46 @@
     if($conn) echo "Kết nối thành công";
     else echo "Kết nối thất bại";
 
-    $sql = "SELECT `monan`.`ten_mon_an`, `monan`.`hinh_anh`, `kichco`.`ten_kich_co`, `monan`.`gia_ca`, `donvitinh`.`ten_don_vi_tinh`, `tinhtrangmon`.`ten_tinh_trang_mon_an` FROM `monan` 
+    $sql_coffee = "SELECT `monan`.`ten_mon_an`, `monan`.`hinh_anh`, `kichco`.`ten_kich_co`, `monan`.`gia_ca`, `donvitinh`.`ten_don_vi_tinh`, `tinhtrangmon`.`ten_tinh_trang_mon_an` FROM `monan` 
             INNER JOIN `donvitinh` ON `monan`.id_don_vi_tinh = donvitinh.id_don_vi_tinh
             INNER JOIN `tinhtrangmon` ON `monan`.`id_tinh_trang` = `tinhtrangmon`.`id_tinh_trang_mon_an`
             INNER JOIN `kichco` ON `monan`.`id_kich_co` = `kichco`.`id_kich_co`
             WHERE `monan`.`id_loai_mon_an` = '1'
             ORDER BY `monan`.`gia_ca` ASC;";
-        $stmt = $conn->prepare($sql);
-        $query = $stmt->execute();
-        $result = array();
-        while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+        $stmt_coffee = $conn->prepare($sql_coffee);
+        $query_coffee = $stmt_coffee->execute();
+        $result_coffee = array();
+        while($row_coffee = $stmt_coffee->fetch(PDO::FETCH_ASSOC))
         {
-            $result[] = $row;
+            $result_coffee[] = $row_coffee;
         }
 
-    $sql1 = "SELECT `monan`.`ten_mon_an`, `monan`.`hinh_anh`, `kichco`.`ten_kich_co`, `monan`.`gia_ca`, `donvitinh`.`ten_don_vi_tinh`, `tinhtrangmon`.`ten_tinh_trang_mon_an` FROM `monan` 
+    $sql_fastfood = "SELECT `monan`.`ten_mon_an`, `monan`.`hinh_anh`, `kichco`.`ten_kich_co`, `monan`.`gia_ca`, `donvitinh`.`ten_don_vi_tinh`, `tinhtrangmon`.`ten_tinh_trang_mon_an` FROM `monan` 
             INNER JOIN `donvitinh` ON `monan`.id_don_vi_tinh = donvitinh.id_don_vi_tinh
             INNER JOIN `tinhtrangmon` ON `monan`.`id_tinh_trang` = `tinhtrangmon`.`id_tinh_trang_mon_an`
             INNER JOIN `kichco` ON `monan`.`id_kich_co` = `kichco`.`id_kich_co`
             WHERE `monan`.`id_loai_mon_an` = '2'
             ORDER BY `monan`.`gia_ca` ASC;";
-        $stmt1 = $conn->prepare($sql1);
-        $query1 = $stmt1->execute();
-        $result1 = array();
-        while($row = $stmt1->fetch(PDO::FETCH_ASSOC))
+        $stmt_fastfood = $conn->prepare($sql_fastfood);
+        $query_fastfood = $stmt_fastfood->execute();
+        $result_fastfood = array();
+        while($row_fastfood = $stmt_fastfood->fetch(PDO::FETCH_ASSOC))
         {
-            $result1[] = $row;
+            $result_fastfood[] = $row_fastfood;
         }
 
-    $sql2 = "SELECT `monan`.`ten_mon_an`, `monan`.`hinh_anh`, `kichco`.`ten_kich_co`, `monan`.`gia_ca`, `donvitinh`.`ten_don_vi_tinh`, `tinhtrangmon`.`ten_tinh_trang_mon_an` FROM `monan` 
+    $sql_pizza = "SELECT `monan`.`ten_mon_an`, `monan`.`hinh_anh`, `kichco`.`ten_kich_co`, `monan`.`gia_ca`, `donvitinh`.`ten_don_vi_tinh`, `tinhtrangmon`.`ten_tinh_trang_mon_an` FROM `monan` 
             INNER JOIN `donvitinh` ON `monan`.id_don_vi_tinh = donvitinh.id_don_vi_tinh
             INNER JOIN `tinhtrangmon` ON `monan`.`id_tinh_trang` = `tinhtrangmon`.`id_tinh_trang_mon_an`
             INNER JOIN `kichco` ON `monan`.`id_kich_co` = `kichco`.`id_kich_co`
             WHERE `monan`.`id_loai_mon_an` = '3'
             ORDER BY `monan`.`gia_ca` ASC;";
-        $stmt2 = $conn->prepare($sql2);
-        $query2 = $stmt2->execute();
-        $result2 = array();
-        while($row = $stmt2->fetch(PDO::FETCH_ASSOC))
+        $stmt_pizza = $conn->prepare($sql_pizza);
+        $query_pizza = $stmt_pizza->execute();
+        $result_pizza = array();
+        while($row_pizza = $stmt_pizza->fetch(PDO::FETCH_ASSOC))
         {
-            $result2[] = $row;
+            $result_pizza[] = $row_pizza;
         }
 ?>
 <!DOCTYPE html>
@@ -64,7 +64,7 @@
 <body>
     <div class="row">
     <h1>Cà phê</h1>
-    <?php foreach($result as $item): ?>
+    <?php foreach($result_coffee as $item): ?>
         <div class="card col-sm-4">
           <img class="card-img-top" src="data:image/jpeg;base64,<?php echo base64_encode( $item['hinh_anh'] )?>" style="width:100%; height:auto" alt="Card image">
           <div class="card-body">
@@ -83,7 +83,7 @@
 
     <div class="row">
     <h1>Đồ ăn nhanh</h1>
-    <?php foreach($result1 as $item): ?>
+    <?php foreach($result_fastfood as $item): ?>
         <div class="card col-sm-4">
           <img class="card-img-top" src="data:image/jpeg;base64,<?php echo base64_encode( $item['hinh_anh'] )?>" style="width:100%; height:auto" alt="Card image">
           <div class="card-body">
@@ -101,7 +101,7 @@
 
     <div class="row">
     <h1>Pizza</h1>
-    <?php foreach($result2 as $item): ?>
+    <?php foreach($result_pizza as $item): ?>
         <div class="card col-sm-4">
           <img class="card-img-top" src="data:image/jpeg;base64,<?php echo base64_encode( $item['hinh_anh'] )?>" style="width:100%; height:auto" alt="Card image">
           <div class="card-body">
