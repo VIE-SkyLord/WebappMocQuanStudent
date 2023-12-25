@@ -6,20 +6,6 @@ function verifyPassword($password, $hashed_password) {
     return password_verify($password, $hashed_password);
 }
 
-// bắt đầu phiên
-session_start();
-
-// Kiểm tra đăng nhập
-if (empty($_SESSION['username'])) {
-    header("location: login.php");
-} else {
-    $id = $_SESSION['id'];
-    $displayname = $_SESSION['displayname'];
-    $username = $_SESSION['username'];
-    $email = $_SESSION['email'];
-    $phonenumber = $_SESSION['phonenumber'];
-}
-
 // Kết nối đến cơ sở dữ liệu
 include 'connect.php';
 if ($conn) echo "Kết nối thành công";
@@ -32,12 +18,12 @@ if (isset($_POST['changepassword'])) {
     $oldpassword = $_POST['oldpassword'];
     $newpassword = $_POST['newpassword'];
     $confirmpassword = $_POST['confirmpassword'];
-    $permission = $_SESSION['permission'];
+    //$permission = $_SESSION['permission'];
 
     // Kiểm tra mật khẩu cũ có đúng không
     $sql = "SELECT mat_khau FROM taikhoan WHERE id_tai_khoan = :id";
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT); // Sửa đổi này
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
     if ($stmt->execute()) {
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -46,7 +32,7 @@ if (isset($_POST['changepassword'])) {
             // Cập nhật mật khẩu mới
             $update_sql = "UPDATE taikhoan SET mat_khau = :newpassword WHERE id_tai_khoan = :id";
             $stmt = $conn->prepare($update_sql);
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT); // Sửa đổi này
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->bindValue(':newpassword', password_hash($newpassword, PASSWORD_DEFAULT));
 
             if ($stmt->execute()) {
@@ -81,6 +67,13 @@ $conn = null; // Đóng kết nối
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+    <?php include'session.php' ?>
+    <?php include'header.php' ?>
+    <?php include'checknav.php' ?>
+    <?php
+        $directnav($permission, $displayname);
+    ?>
+
     <h2>Đổi mật khẩu</h2>
     <content>
         <div class="container bg-dark" style="padding: 10px">
@@ -111,7 +104,6 @@ $conn = null; // Đóng kết nối
                     <tr>
                         <td></td>
                         <td class="float-end">
-                            <a href="index.php"><input type="button" class="btn btn-primary" style="width:200px" name="returnindex" value="Về trang chủ"></a>
                             <a href="information.php"><input type="button" class="btn btn-primary" style="width:300px" name="returnindex" value="Về trang thông tin tài khoản"></a>
                             <input type="submit" class="btn btn-primary" style="width:200px" name="changepassword" value="Đổi mật khẩu">
                         </td>
@@ -120,6 +112,8 @@ $conn = null; // Đóng kết nối
             </form>
         </div>
     </content>
+
+    <?php include'footer.php' ?>
 </body>
 </html>
 

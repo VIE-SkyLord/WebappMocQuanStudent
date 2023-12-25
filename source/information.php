@@ -1,21 +1,4 @@
 ﻿<?php
-    session_start();
-    if(empty($_SESSION['username']))
-    {
-        header("location: login.php");
-    }
-    else
-    {
-        $id = $_SESSION['id'];
-        $displayname = $_SESSION['displayname'];
-        $username = $_SESSION['username'];
-        $email = $_SESSION['email'];
-        $phonenumber = $_SESSION['phonenumber'];
-        $permission = $_SESSION['permission'];
-    }
-?>
-
-<?php
     include 'connect.php';
     if ($conn) {
         echo "Kết nối thành công";
@@ -80,6 +63,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+    <?php include 'session.php' ?>
+    <?php include 'header.php' ?>
+    <?php include 'checknav.php' ?>
+    <?php $directnav($permission,$displayname); ?>
+
     <header style="text-align: center">
         <h1><b>Thông tin tài khoản</b></h1>
     </header>
@@ -129,23 +117,6 @@
                     <tr>
                         <td></td>
                         <td class="float-end">
-                            <?php 
-                            //Hàm kiểm tra phân quyền để về trang chủ
-                            function directpage($permission) 
-                            {
-                                if($permission==1)
-                                {
-                                    return "admin.php";
-                                }
-                                else if($permissionn==2)
-                                {
-                                    return "index.php";
-                                }else{
-                                    return;
-                                }
-                            }
-                            ?>
-                            <a href=<?php echo directpage($permission); ?>><input type="button" class="btn btn-primary" style="width:200px" name="returnindex" value="Về trang chủ"></a>
                             <input type="submit" class="btn btn-primary" style="width:200px" name="changeinformation" value="Thay đổi thông tin">
                         </td>
                     </tr>
@@ -156,5 +127,7 @@
             </form>
         </div>
     </content>
+
+    <?php include 'footer.php' ?>
 </body>
 </html>

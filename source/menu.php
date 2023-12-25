@@ -62,6 +62,53 @@
 
 </head>
 <body>
+    <div height:auto">
+        <p>Đây là nội dung</p>
+        <!-- Carousel -->
+        <div id="demo" class="carousel slide container" data-bs-ride="carousel">
+        <!---header-->
+        <center><h1 style="background-color:green; font-color: ">Xu hướng</h1></center>
+            <!-- Indicators/dots -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+            </div>
+
+            <!-- The slideshow/carousel -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="../image/food/banhgaotoboki.jpg" alt="Bánh gạo toboki" class="d-block w-100">
+                    <div class="carousel-caption">
+                        <h3 style="background-color:black">Bánh gạo toboki</h3>
+                        <p class="btn btn-info">30.000 VND/ 1 Đĩa     <a href="" class="btn btn-danger">Thêm vào giỏ hàng</a><a href="" class="btn btn-danger">Thêm vào bàn ăn</a></p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="../image/food/xucxichxienran.jpg" alt="Xúc xích xiên rán" class="d-block w-100">
+                    <div class="carousel-caption">
+                        <h3 style="background-color:black">Xúc xích xiên rán</h3>
+                        <p class="btn btn-info">35.000 VND/ 1 Đĩa 5 cái     <a href="" class="btn btn-danger">Thêm vào giỏ hàng</a><a href="" class="btn btn-danger">Thêm vào bàn ăn</a></p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="../image/food/shusichien.jpg" alt="Shusi chiên xù" class="d-block w-100">
+                    <div class="carousel-caption">
+                        <h3 style="background-color:black">Shusi chiên xù</h3>
+                        <p class="btn btn-info">50.000 VND/ 1 Đĩa 10 cái     <a href="" class="btn btn-danger">Thêm vào giỏ hàng</a><a href="" class="btn btn-danger">Thêm vào bàn ăn</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Left and right controls/icons -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+
     <div class="row">
     <h1>Cà phê</h1>
     <?php foreach($result_coffee as $item): ?>

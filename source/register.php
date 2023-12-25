@@ -86,13 +86,14 @@ if (isset($_POST['register'])) {
 <!DOCTYPE html>
 <html>
 <head>
+    <?php include 'header.php' ?>
     <title>Đăng ký</title>
 
     <!--BOOTSTRAP5-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body>
+<body style="background-color:antiquewhite; height:auto">
     <header style="text-align: center">
         <h1><b>Đăng ký</b></h1>
     </header>
@@ -155,5 +156,6 @@ if (isset($_POST['register'])) {
             </form>
         </div>
     </content>
+    <?php include 'footer.php' ?>
 </body>
 </html>
