@@ -1,0 +1,19 @@
+﻿body {
+    background-color: antiquewhite;
+}
+/*checkbox*/
+    .select-item {
+        display: none; /* Ẩn checkbox gốc */
+    }
+    .custom-checkbox {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background-color: #eee;
+        border: 1px solid #ccc;
+        cursor: pointer;
+    }
+    .custom-checkbox:checked {
+        background-color: #007bff;
+        color: #fff;
+    }
