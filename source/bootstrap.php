@@ -17,6 +17,12 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script src="../script/change-page.js"></script>
+
+    <!-- GUI -->
+    <link rel="stylesheet" type="text/css" href="GUI/style.css">
+
+    <!--AJAX -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 

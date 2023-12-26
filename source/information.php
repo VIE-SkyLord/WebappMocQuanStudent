@@ -54,15 +54,10 @@
 <head>
     <meta charset="utf-8" />
     <title>Thông tin tài khoản</title>
-    <!--BOOTSTRAP5-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!--ICONS-->
-    <script src="https://kit.fontawesome.com/f443c421d0.js" crossorigin="anonymous"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <?php include 'bootstrap.php' ?>
 </head>
-<body>
+<body  style="background-color:antiquewhite">
     <?php include 'session.php' ?>
     <?php include 'header.php' ?>
     <?php include 'checknav.php' ?>

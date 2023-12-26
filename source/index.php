@@ -17,12 +17,13 @@
 </head>
 <body>
 
-<body>
+<body style="background-color:antiquewhite">
     <?php include 'header.php' ?>
     <?php include 'checknav.php' ?>
     <?php $directnav($permission,$displayname); ?>
-    <div div id="content-container" style="background-color:antiquewhite; height:auto">
-        <?php include 'menu.php' ?>
+    <div div id="content-container" height:auto">
+        <?php include 'checkpage.php' ?>
+        <?php $directpage($permission,'pre-menu.php','menu.php'); ?>
     </div>
     <?php include 'footer.php' ?>
 </body>

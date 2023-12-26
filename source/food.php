@@ -1,47 +1,103 @@
 ﻿<!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+    <meta charset="UTF-8">
+    <title>Quản lý món ăn</title>
+    <?php include 'bootstrap.php'; // Include Bootstrap CSS nếu bạn sử dụng ?>
 </head>
 <body>
-    <?php include 'header.php' ?>
-    <?php
-        session_start();
-        include 'connect.php';
-        if($conn) echo "Kết nối thành công";
-        else echo "Kết nối thất bại";
-        if(isset($_POST['login']))
-        {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
+    <?php include 'session.php' ?>
+    <?php include 'header.php'; // Header của trang web ?>
+    <?php include 'checknav.php' ?>
+    <?php $directnav($permission,$displayname); ?>
+    <div class="container mt-5">
+        <h2>Danh sách món ăn</h2>
+        <div id="dataGridContainer">
+            <!-- Đây là nơi sẽ hiển thị datagridview -->
+        </div>
+    </div>
 
-            // Sử dụng prepared statements để tránh SQL Injection
-            $sql = "SELECT * FROM taikhoan WHERE ten_dang_nhap = :username";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':username', $username);
-            $query = $stmt->execute();
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Load datagridview khi trang được tải
+            loadDatagridview();
 
-            if($row && verifyPassword($password, $row['mat_khau']))
-            {
-                $_SESSION['id'] = $row['id_tai_khoan'];
-                $_SESSION['username'] = $row['ten_dang_nhap'];
-                $_SESSION['displayname'] = $row['ten_hien_thi'];
-                $_SESSION['email'] = $row['email'];
-                $_SESSION['phonenumber'] = $row['so_dien_thoai'];
-                $_SESSION['permission'] = $row['id_quyen_han'];
-                $_SESSION['password'] = $row['mat_khau'];
-
-                header("location: index.php");
+            // Hàm để tải datagridview từ server
+            function loadDatagridview() {
+                $.ajax({
+                    url: 'get-food.php', // Đường dẫn đến tệp PHP để lấy dữ liệu từ cơ sở dữ liệu
+                    type: 'GET',
+                    success: function(data) {
+                        $('#dataGridContainer').html(data);
+                    },
+                    error: function(error) {
+                        console.error("Error: " + error);
+                    }
+                });
             }
-            else {
-                echo "Đăng nhập thất bại";
-            }
-        }
-    ?>
-    <?php include 'pre-menu.php' ?>
-    <?php include 'footer.php' ?>
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Bắt sự kiện khi nút "Sửa" được nhấn
+        $('.edit-item').click(function() {
+            var itemId = $(this).data('id');
+
+            // Gọi API hoặc AJAX để lấy thông tin chi tiết món ăn dựa trên itemId
+
+            // Hiển thị thông tin món ăn trong modal
+            $('#editIdMonAn').val(itemId);
+            // Gán giá trị cho các trường thông tin món ăn tương ứng
+
+            // Mở modal
+            $('#editModal').modal('show');
+        });
+
+        // Xử lý khi form "Sửa" được submit
+        $('#editForm').submit(function(e) {
+            e.preventDefault();
+
+            // Gọi API hoặc AJAX để cập nhật thông tin món ăn dựa trên dữ liệu trong form
+
+            // Đóng modal sau khi cập nhật thành công
+            $('#editModal').modal('hide');
+        });
+    });
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Sửa Thông Tin Món Ăn</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Form để nhập thông tin cần sửa -->
+                <form id="editForm">
+                    <!-- Các trường thông tin món ăn -->
+                    <div class="form-group">
+                        <label for="editTenMonAn">Tên Món Ăn</label>
+                        <input type="text" class="form-control" id="editTenMonAn" name="editTenMonAn" required>
+                    </div>
+                    <!-- Các trường thông tin khác -->
+
+                    <input type="hidden" id="editIdMonAn" name="editIdMonAn">
+
+                    <button type="submit" class="btn btn-primary">Lưu Thay Đổi</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    <?php include 'footer.php'; // Footer của trang web ?>
 </body>
 </html>

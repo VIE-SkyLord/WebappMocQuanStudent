@@ -53,12 +53,7 @@
     <title>Menu</title>
     <meta name="viewport" conten_mon_ant="width=device-width, initial-scale=1">
 
-    <!--BOOTSTRAP5-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!--ICONS-->
-    <script src="https://kit.fontawesome.com/f443c421d0.js" crossorigin="anonymous"></script>
+    <?php include 'bootstrap.php' ?>
 
 </head>
 <body>
